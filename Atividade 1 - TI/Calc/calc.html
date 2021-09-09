@@ -40,7 +40,7 @@
 
       <div class="format">
         <label for="result">Resultado:</label>
-        <input type="hidden" name="result" id="result" placeholder="Resultado...">
+        <input type="text" name="result" id="result" placeholder="Resultado...">
       </div>
 
       <input type="button" value="Calcular" onclick="calcOperations(operations.value)"/>
@@ -52,25 +52,26 @@
 
 <script>
 
-  function calcOperations(operations){
   var val1 = document.getElementById('val1');
   var val2 = document.getElementById('val2');
 
+  function calcOperations(operations){
+
   if (operations == "somar") {
-    var result = parseFloat(val1) + parseFloat(val2);
+    var result = 0;
+    result = parseFloat(val1.value) + parseFloat(val2.value);
   } else {
     if (operations == "subtrair") {
-        var result = val1-val2;
+        var result = parseFloat(val1.value)-parseFloat(val2.value);
     } else {
         if (operations == "multiplicar") {
-          var result = val1*val2;
+          var result = parseFloat(val1.value)*parseFloat(val2.value);
         } else {
-          var result = val1/val2;
+          var result = parseFloat(val1.value)/parseFloat(val2.value);
         }
     }
   }
-
-  document.getElementById('result') = result;
+  document.getElementById('result').setAttribute("value", result);
   }
 
 </script>
