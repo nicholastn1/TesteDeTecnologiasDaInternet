@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+  <link rel="stylesheet" href="/stylesheet.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+</head>
+<body>
+  <form action="/form.html" method="POST">
+  <div class="container">
+      <h1 class="container">Student Register</h1>
+
+      <div class="format">
+        <label for="text">Nome:</label>
+        <input type="text" name="name" id="nameStudent" placeholder="Digite o seu nome..." onkeyup="countChars(this)">
+        <p id="charCounter">0 caracteres</p>
+      </div><br>
+
+      <div class="format">
+        <label for="textarea">Comentário:</label>
+        <textarea id="comment" name="comment" rows="4" cols="30" maxlength="144" placeholder="Digite algo sobre você..." onkeyup="limitChars(this)"></textarea>
+        <p id="limitChars">0 caracteres</p>
+      </div><br>
+
+      <div class="format">
+        <label for="select">Tipo:</label>
+        <select name="subjects" id="subjects">
+          <option value="" disabled selected>Selecione...</option>
+          <option value="Bolsista">Bolsista</option>
+          <option value="PROUNI">  PROUNI  </option>
+          <option value="FIES">    FIES    </option>
+        </select>
+      </div><br>
+
+      <div class="format">
+        <label for="select">Cadeiras:</label>
+
+        <select class="selectpicker" multiple id="chairs">
+          <option value="LP1">LP1</option>
+          <option value="IA"> IA </option>
+          <option value="GP"> GP </option>
+          <option value="TI"> TI </option>
+          <option value="LM"> LM </option>
+          <option value="POO">POO</option>
+          <option value="AC"> AC </option>
+          <option value="I&S">I&S</option>
+        </select>
+      </div><br>
+
+      <div>
+        <label for="radio">Semestre de Ingresso:</label><br>
+
+        <input type="radio" id="sem1" name="semestre" value="sem1">
+        <label for="sem1">1° Semestre</label><br>
+        <input type="radio" id="sem2" name="semestre" value="sem2">
+        <label for="sem2">2° Semestre</label><br>
+      </div><br>
+
+      <div>
+        <label for="checkbox">Professores:</label><br>
+
+        <input type="checkbox" id="prof1" name="prof1" value="ricardo">
+        <label for="prof1">Ricardo</label><br>
+        <input type="checkbox" id="prof2" name="prof2" value="cleilton">
+        <label for="prof2">Cleilton</label><br>
+        <input type="checkbox" id="prof3" name="prof3" value="fláudio">
+        <label for="prof3">Fláudio</label><br>
+        <input type="checkbox" id="prof4" name="prof4" value="lúcio">
+        <label for="prof4">Lúcio</label><br>
+      </div><br>
+
+      <div class="container">
+        <button type="button" class="btn btn-secondary" name="send" id="send" onclick="Alerta()">
+          Visualizar Formulário
+        </button>
+      </div>
+
+      <div class="container">
+        <input type="submit" value="Enviar" class="btn btn-primary">
+      </div>
+
+    </div>
+
+  </form>
+
+</body>
+</html>
+
+<script>
+  function Alerta(){
+    // Enviar o valor correto do rádio button.
+    var semestre = ""
+    if ($('#sem1').is(":checked")){
+      semestre = "1° Semestre"
+    } else if ($('#sem2').is(":checked")){
+      semestre = "2° Semestre"
+    }
+
+    // Concatena e envia os nomes dos professores selecionados.
+    var professor = ""
+    if($('#prof1').is(":checked")){
+      professor = professor + "Ricardo, "
+    }
+    if($('#prof2').is(":checked")){
+      professor = professor + "Cleilton, "
+    }
+    if($('#prof3').is(":checked")){
+      professor = professor + "Fláudio, "
+    }
+    if($('#prof4').is(":checked")){
+      professor = professor + "Lúcio, "
+    }
+
+    // Mostra o alerta da função da tela.
+    alert("Nome: " + $("#nameStudent").val() + "\nComentário: "+ $("#comment").val() + "\nTipo da Matrícula: " +
+      $("#subjects").val() + "\nCadeiras Selecionadas: " + $("#chairs").val() + "\nSemestre de Matrícula: " + semestre
+      + "\nProfessor(es): " + professor
+    );
+  }
+
+  function countChars(obj){
+    document.getElementById('charCounter').innerHTML = obj.value.length + ' caracteres';
+  }
+
+  function limitChars(obj1){
+    var maxLength = 144;
+    var textLength = obj1.value.length;
+    var charRemain = (maxLength - textLength)
+
+    if(charRemain < 0){
+      document.getElementById('limitChars').innerHTML = 'O max de caracteres é ' + maxLength;
+    } else {
+      document.getElementById('limitChars').innerHTML = textLength + '/144 caracteres';
+    }
+  }
+</script>

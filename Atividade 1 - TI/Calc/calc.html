@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+  <link rel="stylesheet" href="/stylesheet.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+</head>
+<body>
+  <form name="calcForm" action="/form.html" method="POST">
+    <div class="container">
+      <h1 class="format">Calculadora</h1>
+
+      <div class="format">
+        <label for="text">Digite 2 valores:</label>
+        <input type="text" name="val1" id="val1" placeholder="Primeiro valor...">
+        <input type="text" name="val2" id="val2" placeholder="Segundo valor...">
+      </div>
+
+      <div class="format">
+        <label for="operations">Operations:</label>
+
+        <select name="operations" id="operations">
+          <option value="" disabled selected>Selecione...</option>
+          <option value="somar">Soma</option>
+          <option value="multiplicar"> Multiplicação </option>
+          <option value="subtrair"> Subtração </option>
+          <option value="dividir"> Divisão </option>
+        </select>
+      </div>
+
+      <div class="format">
+        <label for="result">Resultado:</label>
+        <input type="hidden" name="result" id="result" placeholder="Resultado...">
+      </div>
+
+      <input type="button" value="Calcular" onclick="calcOperations(operations.value)"/>
+
+    </div>
+  </form>
+</body>
+</html>
+
+<script>
+
+  function calcOperations(operations){
+  var val1 = document.getElementById('val1');
+  var val2 = document.getElementById('val2');
+
+  if (operations == "somar") {
+    var result = parseFloat(val1) + parseFloat(val2);
+  } else {
+    if (operations == "subtrair") {
+        var result = val1-val2;
+    } else {
+        if (operations == "multiplicar") {
+          var result = val1*val2;
+        } else {
+          var result = val1/val2;
+        }
+    }
+  }
+
+  document.getElementById('result') = result;
+  }
+
+</script>
